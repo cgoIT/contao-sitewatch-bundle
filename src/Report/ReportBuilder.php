@@ -49,7 +49,7 @@ class ReportBuilder
             // Dieser Job läuft gerade im Contao-Cron, der Cron funktioniert also.
             'cron_last_run' => $now->format(DATE_ATOM),
             'packages_total' => \count(InstalledVersions::getInstalledPackages()),
-            // shortcut: Updates und Sicherheitshinweise sind leer, weil das Bundle sie nicht prüft (siehe Problem unten); später in Sitewatch aus den Paketversionen berechnen.
+            // shortcut: Updates und Sicherheitshinweise sind leer, weil das Bundle sie nicht prüft (Sitewatch wertet sie bei diesem Agent-Typ nicht aus); später in Sitewatch aus den Paketversionen berechnen.
             'outdated' => [],
             'advisories' => [],
         ];
@@ -82,13 +82,16 @@ class ReportBuilder
             $problems[] = 'Log nicht lesbar: '.$e->getMessage();
         }
 
-        $problems[] = 'Vom PHP-Bundle nicht ermittelt: Updates, Sicherheitshinweise, Migrationen, Backups, TLS-Zertifikat, Serverwerte';
-        $site['problems'] = $problems;
+        // Was das Bundle grundsätzlich nicht prüft (Updates, Migrationen, Backups, TLS, Serverwerte), kennt Sitewatch am
+        // Agent-Typ und zeigt es als "nicht geprüft"; hier stehen nur Fehlschläge.
+        if ([] !== $problems) {
+            $site['problems'] = $problems;
+        }
 
         return [
             'schema' => self::SCHEMA,
             'agent' => [
-                'type' => 'php-bundle',
+                'type' => 'contao-bundle',
                 'version' => InstalledVersions::isInstalled(self::BUNDLE) ? (InstalledVersions::getPrettyVersion(self::BUNDLE) ?? 'dev') : 'dev',
             ],
             'host' => ['name' => (string) gethostname()],

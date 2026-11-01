@@ -39,7 +39,8 @@ final class ReportBuilderTest extends TestCase
         $this->assertArrayNotHasKey('maintenance_since', $report['site']);
         $this->assertSame([], $report['site']['outdated']);
         $this->assertSame([], $report['errors']);
-        $this->assertNotEmpty($report['site']['problems']);
+        $this->assertArrayNotHasKey('problems', $report['site']);
+        $this->assertSame('contao-bundle', $report['agent']['type']);
         $this->assertJson(json_encode($report, JSON_THROW_ON_ERROR));
     }
 

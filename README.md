@@ -12,6 +12,8 @@ composer require cgoit/contao-sitewatch-bundle
 
 In `config/config.yaml`:
 
+Den fertigen Block mit Token erzeugt Sitewatch beim Anlegen eines Agenten vom Typ „Contao-Bundle“ (Seite „Agenten“).
+
 ```yaml
 cgoit_sitewatch:
     url: 'https://sitewatch.example.org'
@@ -27,7 +29,7 @@ cgoit_sitewatch:
 
 PHP- und Contao-Version, Anzahl der Pakete, Wartungsmodus (`var/maintenance.html`), Zeitpunkt des Cron-Laufs und gruppierte Fehler (ERROR und höher, letzte 24 Stunden) aus `var/logs`.
 
-**Nicht ermittelt** werden Updates, Sicherheitshinweise, Migrationen, Backups, TLS-Zertifikat und Serverwerte. Das steht als Hinweis in `site.problems`; Sitewatch zeigt die Site deshalb als „teilweise keine Daten“.
+**Nicht ermittelt** werden Updates, Sicherheitshinweise, Migrationen, Backups, TLS-Zertifikat und Serverwerte. Sitewatch kennt das am Agent-Typ `contao-bundle` und zeigt es als „nicht geprüft“; `site.problems` enthält nur echte Fehlschläge.
 
 ## Cron
 
