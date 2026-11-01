@@ -34,4 +34,4 @@ jobs:
                 run: composer install --no-interaction --no-progress
 
             -   name: Run the tests
-                run: composer run phpunit
+                run: composer run tests

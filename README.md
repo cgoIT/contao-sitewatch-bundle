@@ -37,5 +37,5 @@ Der Job hängt am Contao-Cron. Läuft dieser nur über Seitenaufrufe (Contao-Fal
 
 ```bash
 composer install
-composer run phpunit
+composer run tests
 ```
