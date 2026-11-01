@@ -1,0 +1,17 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $projectDir: '%kernel.project_dir%'
+            $url: '%cgoit_sitewatch.url%'
+            $token: '%cgoit_sitewatch.token%'
+            $siteId: '%cgoit_sitewatch.site_id%'
+            $siteName: '%cgoit_sitewatch.site_name%'
+            $siteUrl: '%cgoit_sitewatch.site_url%'
+
+    Cgoit\SitewatchBundle\Cron\:
+        resource: '../src/Cron/'
+
+    Cgoit\SitewatchBundle\Report\:
+        resource: '../src/Report/'

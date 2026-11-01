@@ -1,0 +1,66 @@
+{
+  "name": "cgoit/contao-sitewatch-bundle",
+  "description": "Meldet den Zustand einer Contao-Installation (Versionen, Wartungsmodus, Log-Fehler) per Push an Sitewatch. Für Hosting ohne eigene Programme, z. B. Shared Hosting.",
+  "license": "LGPL-3.0-or-later",
+  "type": "contao-bundle",
+  "authors": [
+    {
+      "name": "Carsten Götzinger",
+      "homepage": "https://github.com/cgoIT"
+    }
+  ],
+  "homepage": "https://cgo-it.de",
+  "support": {
+    "issues": "https://github.com/cgoIT/contao-sitewatch-bundle/issues",
+    "source": "https://github.com/cgoIT/contao-sitewatch-bundle"
+  },
+  "require": {
+    "php": "^8.3",
+    "contao/core-bundle": "^5.3",
+    "ext-mbstring": "*",
+    "psr/log": "^3.0 || ^4.0",
+    "symfony/config": "^6.0 || ^7.2",
+    "symfony/dependency-injection": "^6.0 || ^7.2",
+    "symfony/http-client-contracts": "^3.0",
+    "symfony/http-kernel": "^6.0 || ^7.2"
+  },
+  "require-dev": {
+    "contao/manager-plugin": "^2.0",
+    "phpunit/phpunit": "^12.5 || ^13.2",
+    "symfony/filesystem": "^6.1 || ^7.2",
+    "symfony/http-client": "^6.1 || ^7.2",
+    "terminal42/contao-build-tools": "dev-main"
+  },
+  "conflict": {
+    "contao/manager-plugin": "<2.0 || >=3.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Cgoit\\SitewatchBundle\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Cgoit\\SitewatchBundle\\Tests\\": "tests/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "contao-components/installer": true,
+      "contao/manager-plugin": true,
+      "php-http/discovery": true,
+      "terminal42/contao-build-tools": true
+    }
+  },
+  "extra": {
+    "contao-manager-plugin": "Cgoit\\SitewatchBundle\\ContaoManager\\Plugin"
+  },
+  "scripts": {
+    "all": [
+      "@fix-tools",
+      "@tests"
+    ],
+    "tests": "phpunit",
+    "coverage": "@php -d extension=pcov -d pcov.enabled=1 vendor/bin/phpunit --coverage-text --coverage-filter src --coverage-html build/coverage"
+  }
+}

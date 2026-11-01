@@ -1,0 +1,18 @@
+# Composer
+/composer.lock
+/vendor/
+
+# PHPUnit
+/.phpunit.result.cache
+/.phpunit.cache
+/phpunit.xml
+
+# PHPStorm
+.idea/
+.tool-versions
+
+# Mac
+.DS_Store
+
+# Claude Code
+CLAUDE.md
