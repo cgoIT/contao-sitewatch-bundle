@@ -27,7 +27,7 @@ cgoit_sitewatch:
 
 ## Was gemeldet wird
 
-PHP- und Contao-Version, Anzahl der Pakete, Wartungsmodus (`var/maintenance.html`), Zeitpunkt des Cron-Laufs und gruppierte Fehler (ERROR und höher, letzte 24 Stunden) aus `var/logs`.
+PHP- und Contao-Version, Anzahl der Pakete, Wartungsmodus (`var/maintenance.html`), Zeitpunkt des Cron-Laufs und gruppierte Fehler (ERROR und höher, letzte 24 Stunden) aus `var/logs`. Bekannte CSP-Meldungen aus Besucher-Browsern werden nur gezählt (`errors_known`, Regeln in `LogReader::CSP_NOISE`).
 
 **Nicht ermittelt** werden Updates, Sicherheitshinweise, Migrationen, Backups, TLS-Zertifikat und Serverwerte. Sitewatch kennt das am Agent-Typ `contao-bundle` und zeigt es als „nicht geprüft“; `site.problems` enthält nur echte Fehlschläge.
 

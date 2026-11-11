@@ -20,7 +20,7 @@ use Symfony\Component\Filesystem\Filesystem;
 final class ReportBuilderTest extends TestCase
 {
     // Felder aus internal/report in Sitewatch (Schema 1); ein neues Feld dort muss hier bewusst ergänzt werden.
-    private const array TOP = ['schema', 'agent', 'host', 'site', 'errors', 'collected_at'];
+    private const array TOP = ['schema', 'agent', 'host', 'site', 'errors', 'errors_known', 'collected_at'];
 
     private const array SITE = ['id', 'name', 'kind', 'url', 'php', 'contao', 'maintenance_mode', 'maintenance_since', 'tls_expires', 'last_backup', 'backup_count', 'cron_last_run', 'pending_migrations', 'packages_total', 'outdated', 'advisories', 'problems'];
 
@@ -39,6 +39,7 @@ final class ReportBuilderTest extends TestCase
         $this->assertArrayNotHasKey('maintenance_since', $report['site']);
         $this->assertSame([], $report['site']['outdated']);
         $this->assertSame([], $report['errors']);
+        $this->assertSame(0, $report['errors_known']);
         $this->assertArrayNotHasKey('problems', $report['site']);
         $this->assertSame('contao-bundle', $report['agent']['type']);
         $this->assertJson(json_encode($report, JSON_THROW_ON_ERROR));

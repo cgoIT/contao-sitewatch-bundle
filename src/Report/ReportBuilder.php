@@ -76,9 +76,10 @@ class ReportBuilder
         }
 
         try {
-            $errors = $this->logReader->read($this->projectDir.'/var/logs', $now);
+            ['errors' => $errors, 'known' => $known] = $this->logReader->read($this->projectDir.'/var/logs', $now);
         } catch (\Throwable $e) {
             $errors = [];
+            $known = null; // nicht ermittelt: Feld weglassen statt 0 melden
             $problems[] = 'Log nicht lesbar: '.$e->getMessage();
         }
 
@@ -97,6 +98,8 @@ class ReportBuilder
             'host' => ['name' => (string) gethostname()],
             'site' => $site,
             'errors' => $errors,
+            // bekannte CSP-Meldungen aus Besucher-Browsern: nur gezählt, nicht in errors (Regeln in LogReader::CSP_NOISE)
+            ...(null === $known ? [] : ['errors_known' => $known]),
             'collected_at' => $now->format(DATE_ATOM),
         ];
     }
