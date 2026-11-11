@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/cgoIT/contao-sitewatch-bundle/compare/v1.0.0...v1.1.0) (2026-11-11)
+
+
+### Features
+
+* bekannte CSP-Meldungen aus Besucher-Browsern ausblenden und zählen ([d79ee37](https://github.com/cgoIT/contao-sitewatch-bundle/commit/d79ee37e07398ec8bdd6e6812a59853a6d72018b))
+
 ## [1.0.0](https://github.com/cgoIT/contao-sitewatch-bundle/compare/v0.1.0...v1.0.0) (2026-11-01)
 
 
